@@ -1,5 +1,5 @@
 # 小白练习项目
-一个只有登录注册功能的项目
+一个只有登录注册功能的项目，其他的增删改查功能你们可以去添加
 #### 介绍
 技术栈：Springboot、Mybatis、VueJS、Bootstrap，数据库：Mysql
 
