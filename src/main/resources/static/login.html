@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+  <style>
+    body {
+      background: url("imgs/bg.webp") no-repeat;
+      background-size: cover;
+    }
+  </style>
+
+  <!--  引入资源文件-->
+  <script src="js/resources.js"></script>
+</head>
+<body>
+
+  <div id="app">
+
+    <div style="width: 400px; background-color: #fff; margin: 150px auto; text-align: center; border: 1px solid #ddd; padding: 30px 0 50px 0;
+     border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, .2);">
+      <div style="width: 80%; margin: 0 auto">
+        <div style="margin: 20px; color: #0c63e4"><h2>登 录</h2></div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+          <input type="text" class="form-control" placeholder="用户名" v-model="username">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" class="form-control" placeholder="密码" v-model="password">
+        </div>
+        <div class="mb-3">
+          <button style="width: 100%" class="btn btn-primary" @click="login">登录</button>
+        </div>
+        <div style="text-align: right;"><a href="/register.html">前往注册</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          username: 'admin',
+          password: 'admin'
+        }
+      },
+      methods: {
+        login() {
+          if (!this.username || !this.password) {
+            $.message({message: "请输入账号和密码", type: 'info'})
+            return
+          }
+          // 发送请求给后台
+          fetch("/user/login", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'  // 通过json的方式传给后台
+            },
+            body: JSON.stringify({username: this.username, password: this.password})  // 向后台发数据
+          }).then(res => res.json()) //对res进行处理
+            .then(res => {   // res就是后台返回的结果
+              console.log(res);
+            if (res.code === '200') {  // 判断请求是否成功
+              $.message({message: "登录成功", type: 'info'})
+              localStorage.setItem("user",JSON.stringify(res.data))
+              setTimeout(() => {
+                location.href = '/'
+              }, 1500)
+            } else {
+              $.message({message: "登录失败", type: 'error'})
+            }
+          })
+
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>

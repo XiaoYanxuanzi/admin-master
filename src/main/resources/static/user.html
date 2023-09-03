@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <script src="js/resources.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!-- 头部-->
+    <script src="js/header.js"></script>
+
+    <!-- 主体 -->
+    <div style="display: flex; margin: 5px;">
+        <!-- 菜单栏-->
+        <script src="js/nav.js"></script>
+
+        <!-- 数据展示区域 -->
+        <div style="flex: 1; margin-left: 10px; ">
+
+            <!-- 头部搜索区域  -->
+            <div style="margin: 10px 0">
+                <div class="row g-3">
+                    <div class="col-auto">
+                        <label class="col-form-label">姓名</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" v-model="name">
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="col-form-label">手机号</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" v-model="phone">
+                    </div>
+
+                    <div class="col-auto">
+                        <button class="btn btn-primary" @click="load">搜索</button>
+                    </div>
+                </div>
+
+                <div style="margin: 10px 0">
+                    <button class="btn btn-primary" @click="handleAdd">新增</button>
+                </div>
+            </div>
+            <!-- 头部搜索区域结束  -->
+
+            <table class="table table-striped table-hover caption-top">
+                <caption>用户信息表</caption>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>用户名</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>生日</th>
+                    <th>账户余额</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th>角色</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in tableData" :key="item.id">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.birth }}</td>
+                    <td>{{ item.account }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.role }}</td>
+                    <td>
+                        <button class="btn btn-link btn-sm" @click="handleEdit(item)">编辑</button>
+                        <button class="btn btn-link btn-sm" style="color: red; margin-left: 5px" @click="del(item.id)">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px">
+                <div class="modal-header">
+                    <h5 class="modal-title">用户信息</h5>
+                    <button type="button" class="close" @click="toggle" style="border: none;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row m-md-3">
+                            <label for="username" class="col-sm-2 col-form-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" v-model="form.username">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="name" class="col-sm-2 col-form-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" v-model="form.name">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="age" class="col-sm-2 col-form-label">年龄</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="age" v-model="form.age">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="birth" class="col-sm-2 col-form-label">生日</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" id="birth" v-model="form.birth">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="account" class="col-sm-2 col-form-label">账户余额</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="account" v-model="form.account">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="phone" class="col-sm-2 col-form-label">手机</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="phone" v-model="form.phone">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="email" class="col-sm-2 col-form-label">邮箱</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" v-model="form.email">
+                            </div>
+                        </div>
+                        <div class="form-group row m-md-3">
+                            <label for="role" class="col-sm-2 col-form-label">角色</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="role" v-model="form.role">
+                                    <option value="admin">管理员</option>
+                                    <option value="user">普通用户</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="toggle">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                tableData: [],
+                name: '',
+                phone: '',
+                form: {}
+            }
+        },
+        created() {
+            this.load()
+        },
+        methods: {
+            load() {
+                // 请求所有用户数据  `` 是 ES6的模板字符串语法
+                fetch(`/user/all?name=${this.name}&phone=${this.phone}`).then(res => res.json()).then(res => {
+                    this.tableData = res.data
+                })
+            },
+            handleAdd() {
+                this.form = {}
+                this.toggle()
+            },
+            handleEdit(row) {
+                // Object.assign(this.form, row)
+                this.form = JSON.parse(JSON.stringify(row))
+                this.toggle()
+            },
+            save() {
+                fetch("/user", {
+                    method: this.form.id ? 'PUT' : 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.form)
+                }).then(res => res.json()).then(res => {
+                    if (res.code === '200') {
+                        $.message({message: "操作成功", type: 'success'})
+                        this.toggle()
+                        this.load()
+                    } else {
+                        $.message({message: res.msg, type: 'error'})
+                    }
+                })
+            },
+            del(id) {
+                fetch(`/user/${id}`, {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json()).then(res => {
+                    if (res.code === '200') {
+                        $.message({message: "删除成功", type: 'success'})
+                        this.load()
+                    } else {
+                        $.message({message: res.msg, type: 'error'})
+                    }
+                })
+            },
+            toggle() {
+                $('#myModal').modal('toggle')
+            }
+        }
+    })
+</script>
+</body>
+</html>

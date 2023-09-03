@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="js/resources.js"></script>
+</head>
+<body>
+  <div id="app">
+
+      <!-- 头部-->
+      <script src="js/header.js"></script>
+
+      <!-- 主体 -->
+      <div style="display: flex; margin: 5px;">
+
+          <!-- 菜单栏-->
+          <script src="js/nav.js"></script>
+
+          <!-- 数据展示区域 -->
+          <div style="flex: 1; padding: 10px">
+              欢迎你！{{ user.username }}
+          </div>
+      </div>
+  </div>
+
+  <script>
+
+      new Vue({
+          el: '#app',
+          data() {
+              return {
+                  user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
+              }
+          },
+          created() {
+
+          },
+          methods: {
+
+          }
+      })
+  </script>
+</body>
+</html>
