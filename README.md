@@ -1,12 +1,12 @@
-# boot-vue-admin
-
-`配套从0开始讲解视频请加：1938976892，进私教群获取`
-
+# 小白练习项目
+一个只有登录注册功能的项目，其他的增删改查功能你们可以去添加
 #### 介绍
-从头带小白做管理系统，技术栈：Springboot、Mybatis-Plus、VueJS、Bootstrap，数据库：Mysql
+技术栈：Springboot、Mybatis、VueJS、Bootstrap，数据库：Mysql
 
-## 如果你突然打了个喷嚏，说明你还不够努力
+## 麻雀虽小，五脏俱全，效果如图所示
+![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/87c10ca1-c638-4bf2-99d4-66971ad6bd6d)
+![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/d3fca5d9-cec1-47b3-a159-ab293f9fdc14)
+![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/4230b60e-613b-44b1-844f-20b97e02294e)
 
-## 如果你半夜被手机吵醒，那一定没好好学习
 
 
