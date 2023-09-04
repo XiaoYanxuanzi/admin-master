@@ -15,4 +15,8 @@ public interface UserMapper {
 
     @Select("select * from user")
     List<User> Userlist();
+
+    void update(User user);
+
+    void deleteById(int id);
 }

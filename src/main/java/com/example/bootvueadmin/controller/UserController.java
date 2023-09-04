@@ -54,10 +54,21 @@ public class UserController {
         return Result.success(users);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Result save(@RequestBody User user){
         userService.save(user);
         return Result.success();
     }
 
+    @PutMapping
+    public Result update(@RequestBody User user) {
+        userService.update(user);
+        return Result.success();
+    }
+
+    @DeleteMapping("/{id}")  // /1
+    public Result delete(@PathVariable int id) {//这里的注解用来解析前端的参数，映射到参数id
+        userService.deleteById(id);
+        return Result.success();
+    }
 }

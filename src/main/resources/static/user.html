@@ -191,7 +191,7 @@
                 this.toggle()
             },
             save() {
-                fetch("/user/save", {
+                fetch("/user", {
                     method: this.form.id ? 'PUT' : 'POST',
                     headers: {
                         'Content-Type': 'application/json'

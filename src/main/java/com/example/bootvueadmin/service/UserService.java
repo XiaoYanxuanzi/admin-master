@@ -77,4 +77,11 @@ public class UserService {
         userMapper.save(user);
     }
 
+    public void update(User user) {
+        userMapper.update(user);
+    }
+
+    public void deleteById(int id) {
+        userMapper.deleteById(id);
+    }
 }
