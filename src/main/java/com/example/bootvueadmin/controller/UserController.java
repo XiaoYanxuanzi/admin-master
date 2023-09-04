@@ -48,5 +48,16 @@ public class UserController {
         response.sendRedirect("/login.html");  // 推荐后台跳转，防止缓存
     }
 
+    @GetMapping("/list")
+    public Result userList(){
+        List<User> users = userService.list();
+        return Result.success(users);
+    }
+
+    @PostMapping("/save")
+    public Result save(@RequestBody User user){
+        userService.save(user);
+        return Result.success();
+    }
 
 }

@@ -11,6 +11,8 @@ public interface UserMapper {
 
     User selectUserByUsername(String username);
 
-    int save(User saveuser);
+    void save(User user);
 
+    @Select("select * from user")
+    List<User> Userlist();
 }

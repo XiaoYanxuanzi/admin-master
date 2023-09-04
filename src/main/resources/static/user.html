@@ -177,7 +177,7 @@
         methods: {
             load() {
                 // 请求所有用户数据  `` 是 ES6的模板字符串语法
-                fetch(`/user/all?name=${this.name}&phone=${this.phone}`).then(res => res.json()).then(res => {
+                fetch(`/user/list`).then(res => res.json()).then(res => {
                     this.tableData = res.data
                 })
             },
@@ -191,7 +191,7 @@
                 this.toggle()
             },
             save() {
-                fetch("/user", {
+                fetch("/user/save", {
                     method: this.form.id ? 'PUT' : 'POST',
                     headers: {
                         'Content-Type': 'application/json'

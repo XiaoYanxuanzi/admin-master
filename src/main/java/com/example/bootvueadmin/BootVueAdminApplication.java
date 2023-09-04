@@ -16,11 +16,11 @@ public class BootVueAdminApplication {
 
     }
 
-    @Bean
-    public FilterRegistrationBean getfilterRegistrationBean(){
-        FilterRegistrationBean bean = new FilterRegistrationBean(new AuthFilter());
-        bean.addUrlPatterns("/*");
-        return bean;
-    }
+//    @Bean
+//    public FilterRegistrationBean getfilterRegistrationBean(){
+//        FilterRegistrationBean bean = new FilterRegistrationBean(new AuthFilter());
+//        bean.addUrlPatterns("/*");
+//        return bean;
+//    }
 
 }

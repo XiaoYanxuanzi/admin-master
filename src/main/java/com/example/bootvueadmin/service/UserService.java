@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
     public User login(String username, String password) {
         // 通过Mybatis查询数据
         User user = userMapper.selectUser(username, password);
@@ -37,6 +44,12 @@ public class UserService {
         return user;
     }
 
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @throws CustomerException
+     */
     public void register(String username, String password) throws CustomerException{
         // 通过Mybatis查询数据
         User user = userMapper.selectUserByUsername(username);
@@ -47,5 +60,21 @@ public class UserService {
         userMapper.save(saveuser);
     }
 
+    /**
+     * 显示用户信息
+     * @return
+     */
+    public List<User> list() {
+
+        return userMapper.Userlist();
+    }
+
+    public void save(User user) {
+        User res = userMapper.selectUserByUsername(user.getUsername());
+        if(res != null){
+            throw new CustomerException("用户名重复");
+        }
+        userMapper.save(user);
+    }
 
 }
