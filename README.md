@@ -3,16 +3,13 @@
 #### 介绍
 技术栈：Springboot、Mybatis、VueJS、Bootstrap，数据库：Mysql
 
-#
-有问题可以联系作者
-![wx](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/f6b0a48c-286e-42dd-9134-573a09d7d49b)
-
-
 ## 麻雀虽小，五脏俱全，效果如图所示
 ![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/62c67b34-ed91-4166-b885-3a912fcfb3f9)
 ![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/d3fca5d9-cec1-47b3-a159-ab293f9fdc14)
 ![image](https://github.com/XiaoYanxuanzi/admin-master/assets/95231563/2405910d-d675-4796-9397-0bd1ce6f5426)
 
+# 联系作者
+wx：Xiaoxuan031105
 
 
 
